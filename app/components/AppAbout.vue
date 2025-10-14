@@ -6,7 +6,7 @@
     <h2 class="section-title about__title">О себе</h2>
     <div class="about__wrapper">
       <picture>
-        <source media="(width <pi= 768px)" srcset="./img/avatar.webp">
+        <source media="(width <= 768px)" srcset="/images/avatar.webp">
         <img
           class="about__avatar"
           src="/images/avatar.webp"
