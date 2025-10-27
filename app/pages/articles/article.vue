@@ -24,13 +24,7 @@ const content = result?.posts?.nodes?.map((post) => post.content) || [];
     <AppHero 
       :title="posts[0]"
     />
-    <article class="article">
-      <div v-html="content"></div>
-      <!-- <ContentRenderer v-if="posts[0]" :value="posts[0]" tag="section" /> -->
-      <!-- <ContentRenderer v-if="page" :value="page" tag="section" /> -->
-      <!-- <div v-else>Page not found</div> -->
-
-    </article>
+    <article class="article" v-html="content"></article>
   </main>
 </template>
 
@@ -40,4 +34,42 @@ const content = result?.posts?.nodes?.map((post) => post.content) || [];
     margin: 0 auto;
     margin-block-end: 180px;
   }
+
+  .article :deep(a) {
+    color: #E17346;
+    text-decoration-color: transparent;
+    transition: all 0.1s ease-in-out;
+    text-underline-offset: 0.4em;
+  }
+  .article :deep(a:hover) {
+    text-decoration-color: #E17346;
+    text-underline-offset: 0.3em;
+  }
+
+  .article :deep(h2) {
+    color: #000000;
+  }
+
+  .article :deep(p) {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin-block-end: 2rem;
+  }
+
+  .article :deep(ul) {
+    margin-block-end: 2em;
+    padding-inline-start: 0;
+  }
+
+  .article :deep(li) {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    padding-inline-start: 0.5em;
+    margin-inline-start: 1em;
+  }
+  
+  .article :deep(li::marker) {
+    color: tomato;
+  }
+
 </style>
