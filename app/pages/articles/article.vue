@@ -8,14 +8,14 @@ const result = await useGraphql<PostsQueryResponse>(`
     posts {
       nodes {
         title
+        content
       }
     }
   }
 `);
 
 const posts = result?.posts?.nodes?.map((post) => post.title) || [];
-console.log(posts) 
-
+const content = result?.posts?.nodes?.map((post) => post.content) || [];
 
 </script>
 
@@ -25,6 +25,7 @@ console.log(posts)
       :title="posts[0]"
     />
     <article class="article">
+      <div v-html="content"></div>
       <!-- <ContentRenderer v-if="posts[0]" :value="posts[0]" tag="section" /> -->
       <!-- <ContentRenderer v-if="page" :value="page" tag="section" /> -->
       <!-- <div v-else>Page not found</div> -->

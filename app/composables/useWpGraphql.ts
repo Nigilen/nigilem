@@ -2,7 +2,7 @@ export interface WpPost {
   title: string
   // date?: string
   // excerpt?: string
-  // content?: string
+  content?: string
 }
 
 export interface PostsQueryResponse {
