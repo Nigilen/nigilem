@@ -1,8 +1,6 @@
 <script setup lang="ts">
 
-// const query = groq`*[_type == "event"]`;
-// const { data: event } = useSanityQuery(query);
-
+const { data: page } = useAsyncData('page', () => fetch())
 
 
 </script>
