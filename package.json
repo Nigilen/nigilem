@@ -18,12 +18,13 @@
     "@nuxt/test-utils": "^3.19.2",
     "better-sqlite3": "^12.4.1",
     "eslint": "^9.36.0",
+    "graphql": "^15.10.1",
     "nuxt": "^4.0.1",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "html-to-markdown": "^1.0.0",
+    "@nuxtjs/apollo": "^5.0.0-alpha.15",
     "sass-embedded": "^1.93.2"
   }
 }

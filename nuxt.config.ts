@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/test-utils',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
   ],
 
   fonts: {
@@ -23,7 +23,6 @@ export default defineNuxtConfig({
       }
     ]
   },
-
 
   icon: {
     customCollections: [

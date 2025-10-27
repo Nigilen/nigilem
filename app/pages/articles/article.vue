@@ -1,19 +1,31 @@
 <script setup lang="ts">
 
-const { data: page } = useAsyncData('page', () => fetch())
+import { useGraphql } from '~/composables/useWpGraphql';
+import type { PostsQueryResponse } from '~/composables/useWpGraphql';
+
+const result = await useGraphql<PostsQueryResponse>(`
+  {
+    posts {
+      nodes {
+        title
+      }
+    }
+  }
+`);
+
+const posts = result?.posts?.nodes?.map((post) => post.title) || [];
+console.log(posts) 
 
 
 </script>
 
 <template>
   <main>
-    <!-- <AppHero 
-      :title="page?.hero.title"
-      :date="page?.hero.date"
-      :breadcrumbs="page?.hero.breadcrumbs"
-    /> -->
+    <AppHero 
+      :title="posts[0]"
+    />
     <article class="article">
-      <!-- <ContentRenderer v-if="events" :value="events" tag="section" /> -->
+      <!-- <ContentRenderer v-if="posts[0]" :value="posts[0]" tag="section" /> -->
       <!-- <ContentRenderer v-if="page" :value="page" tag="section" /> -->
       <!-- <div v-else>Page not found</div> -->
 
