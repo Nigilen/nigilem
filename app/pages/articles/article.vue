@@ -1,12 +1,9 @@
 <script setup lang="ts">
 
+// const query = groq`*[_type == "event"]`;
+// const { data: event } = useSanityQuery(query);
 
-const { data: events } = await useAsyncData('events', async () => {
-  const { $sanity } = useNuxtApp()
-  return $sanity.fetch(`*[_type == "event"]`)
-});
 
-console.log(events.value);
 
 </script>
 
@@ -18,7 +15,6 @@ console.log(events.value);
       :breadcrumbs="page?.hero.breadcrumbs"
     /> -->
     <article class="article">
-      <p>{{ events.value }}</p>
       <!-- <ContentRenderer v-if="events" :value="events" tag="section" /> -->
       <!-- <ContentRenderer v-if="page" :value="page" tag="section" /> -->
       <!-- <div v-else>Page not found</div> -->
