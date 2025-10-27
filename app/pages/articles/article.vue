@@ -1,27 +1,27 @@
 <script setup lang="ts">
 
-const path = useRoute().path;
 
-const { data: page } = await useAsyncData(() => queryCollection('content').path(path).first());
-
-useSeoMeta({
-  title: page?.value?.title,
-  description: page?.value?.description,
+const { data: events } = await useAsyncData('events', async () => {
+  const { $sanity } = useNuxtApp()
+  return $sanity.fetch(`*[_type == "event"]`)
 });
+
+console.log(events.value);
 
 </script>
 
 <template>
   <main>
-    <AppHero 
+    <!-- <AppHero 
       :title="page?.hero.title"
       :date="page?.hero.date"
       :breadcrumbs="page?.hero.breadcrumbs"
-    />
+    /> -->
     <article class="article">
-
-      <ContentRenderer v-if="page" :value="page" tag="section" />
-      <div v-else>Page not found</div>
+      <p>{{ events.value }}</p>
+      <!-- <ContentRenderer v-if="events" :value="events" tag="section" /> -->
+      <!-- <ContentRenderer v-if="page" :value="page" tag="section" /> -->
+      <!-- <div v-else>Page not found</div> -->
 
     </article>
   </main>
