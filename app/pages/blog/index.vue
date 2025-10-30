@@ -2,7 +2,7 @@
 
 const { data: page } = await useAsyncData(() => queryCollection('content').path('/blog').first())
 
-const { data: posts } = await useFetch('http://a0789232.xsph.ru/wp-json/wp/v2/posts')
+const { data: posts } = await useFetch('https://nigilen.site/wp-json/wp/v2/posts')
 
 </script>
 
