@@ -20,7 +20,7 @@ interface GraphqlResponse<T> {
 };
 
 export const useGraphql = async <T = null>(query: string) => {
-  const { data } = await useFetch<GraphqlResponse<T>>('https://nigilen.site/graphql', {
+  const { data } = await useFetch<GraphqlResponse<T>>('https://cms.nigilen.site/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

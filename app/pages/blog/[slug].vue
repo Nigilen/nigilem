@@ -23,7 +23,7 @@
 const route = useRoute();
 const slug = route.params.slug;
 
-const { data: post } = await useFetch(`https://nigilen.site/wp-json/wp/v2/posts?slug=${slug}`);
+const { data: post } = await useFetch(`https://cms.nigilen.site/wp-json/wp/v2/posts?slug=${slug}`);
 
 const article = post.value?.[0];
 
