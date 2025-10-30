@@ -2,16 +2,14 @@ export interface WpPost {
   title: string
   // date?: string
   // excerpt?: string
+  slug?: string
   content?: string
-}
-
+};
 export interface PostsQueryResponse {
   posts: {
     nodes: WpPost[]
   }
 };
-
-
 interface GraphqlResponse<T> {
   data?: T
   errors?: Array<{
@@ -19,7 +17,7 @@ interface GraphqlResponse<T> {
     locations?: Array<{ line: number; column: number }>
     path?: string[]
   }>
-}
+};
 
 export const useGraphql = async <T = null>(query: string) => {
   const { data } = await useFetch<GraphqlResponse<T>>('http://a0789232.xsph.ru/graphql', {
@@ -35,4 +33,4 @@ export const useGraphql = async <T = null>(query: string) => {
   };
 
   return data.value?.data as T | null;
-}
+};

@@ -1,13 +1,16 @@
 <script lang="ts" setup></script>
 <template>
-  <a href="/articles/article" class="blog-item">
+  <div>
     <img class="blog-item__img" src="/images/rectangle.png" alt="" width="294" height="294">
     <div class="blog-item__text">
       <time class="blog-item__date" datetime="2019-08-04">August 4, 2019</time>
       <h2 class="blog-item__title">Inspiring design trends this fall 2019</h2>
       <p class="blog-item__description">My job is simple and sophisticated, so it is possible to describe and simple, and flowery language. I love the…</p>
     </div>
-  </a>
+
+  </div>
+  <!-- <a href="/articles/article" class="blog-item"> -->
+  <!-- </a> -->
 </template>
 
 <style lang="scss" scoped>
