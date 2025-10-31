@@ -12,19 +12,19 @@ const handleOpenMenu = () => {
   <nav class="site-nav">
     <ul class="site-nav__list nav-list" :class="{ ['nav-list--open']:isMenuOpen }">
       <li>
-        <a class="nav-list__link" href="/resume">Резюме</a>
+        <NuxtLink class="nav-list__link" href="/resume">Резюме</NuxtLink>
       </li>
       <li>
-        <a class="nav-list__link" href="/portfolio">Портфолио</a>
+        <NuxtLink class="nav-list__link" href="/portfolio">Портфолио</NuxtLink>
       </li>
       <li>
-        <a class="nav-list__link" href="/blog">Блог</a>
+        <NuxtLink class="nav-list__link" href="/blog">Блог</NuxtLink>
       </li>
       <li>
-        <a class="nav-list__link" href="/contacts">Контакты</a>
+        <NuxtLink class="nav-list__link" href="/contacts">Контакты</NuxtLink>
       </li>
       <li>
-        <a class="nav-list__link" href="/services">Услуги</a>
+        <NuxtLink class="nav-list__link" href="/services">Услуги</NuxtLink>
       </li>
     </ul>
   </nav>

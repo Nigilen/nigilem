@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     prerender: {
-      crawlLinks: true, // автоматически найдёт все ссылки из /blog
+      crawlLinks: true,
       routes: ['/blog']
     }
   },

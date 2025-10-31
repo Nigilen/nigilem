@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 
+const { data: posts } = await useFetch('https://cms.nigilen.site/wp-json/wp/v2/posts?_embed');
+
+console.log(posts)
 
 </script>
 
@@ -7,8 +10,13 @@
 <template>
   <section class="blog-grid">
     <ul class="blog-grid__list">
-      <li v-for="i in 10" :key="i" class="blog-grid__item">
-        <BlogItem />
+      <li v-for="post in posts" :key="post" class="blog-grid__item">
+        <BlogItem 
+          :title="post.title.rendered"
+          :description="post.excerpt.rendered"
+          :image="post?._embedded?.['wp:featuredmedia']?.[0]?.source_url"
+          :url="`/blog/${post.slug}`"
+        />
       </li>
     </ul>
   </section>

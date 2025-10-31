@@ -27,9 +27,6 @@ const { data: post } = await useFetch(`https://cms.nigilen.site/wp-json/wp/v2/po
 
 const article = post.value?.[0];
 
-if (!article) {
-  throw createError({ statusCode: 404, statusMessage: 'Статья не найдена' })
-}
 
 </script>
 

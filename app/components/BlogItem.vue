@@ -1,16 +1,30 @@
-<script lang="ts" setup></script>
-<template>
-  <div>
-    <img class="blog-item__img" src="/images/rectangle.png" alt="" width="294" height="294">
-    <div class="blog-item__text">
-      <time class="blog-item__date" datetime="2019-08-04">August 4, 2019</time>
-      <h2 class="blog-item__title">Inspiring design trends this fall 2019</h2>
-      <p class="blog-item__description">My job is simple and sophisticated, so it is possible to describe and simple, and flowery language. I love the…</p>
-    </div>
+<script lang="ts" setup>
 
-  </div>
-  <!-- <a href="/articles/article" class="blog-item"> -->
-  <!-- </a> -->
+const props = defineProps<{
+  url?: string;
+  title?: string;
+  image?: string;
+  date?: string;
+  description?: string;
+}>();
+
+</script>
+
+<template>
+  <NuxtLink :to="props.url" class="blog-item">
+    <img 
+      class="blog-item__img" 
+      :src="props.image" 
+      :alt="props.title" 
+      width="294" 
+      height="294"
+    >
+    <div class="blog-item__text">
+      <time class="blog-item__date" :datetime="props.date">{{ props.date }}</time>
+      <h2 class="blog-item__title">{{ props.title }}</h2>
+      <p class="blog-item__description" v-html="props.description"></p>
+    </div>
+  </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
