@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 
+const props = defineProps<{
+  title: string;
+  button: string;
+}>();
+
 const handleSubmit = () => {
   console.log('submit')
 }
@@ -10,7 +15,7 @@ const handleSubmit = () => {
 
 <template>
   <section class="contacts-form container">
-    <h2 class="section-title">Нанять меня</h2>
+    <h2 class="section-title">{{ props.title }}</h2>
     <form class="form" action="#" method="POST" @submit.prevent="handleSubmit">
       <div class="form__field">
         <label class="form__label visibility" for="form-name">Ваше имя</label>
@@ -47,7 +52,7 @@ const handleSubmit = () => {
           required
         />
       </div>
-      <button class="button form__button" type="submit">Отправить</button>
+      <button class="button form__button" type="submit">{{ props.button }}</button>
     </form>
   </section>
 </template>

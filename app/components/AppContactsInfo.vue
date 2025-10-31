@@ -1,6 +1,17 @@
+<script lang="ts" setup>
+
+const props = defineProps<{
+  title: string;
+  phone: string;
+  email: string;
+  address: string;
+}>();
+
+</script>
+
 <template>
   <section class="contacts-info container">
-    <h2 class="section-title contacts-info__title">Контактная информация</h2>
+    <h2 class="section-title contacts-info__title">{{ props.title }}</h2>
     <dl class="contacts-info__list" role="list">
       <div class="contacts-info__item contact-info-item" role="listitem">
         <dt class="contact-info-item__term">
@@ -8,7 +19,7 @@
           Телефон
         </dt>
         <dd class="contact-info-item__desc">
-          <a class="contact-info-item__value" href="tel:+79521179309">+7 (952) 117 93 09</a>
+          <a class="contact-info-item__value" href="tel:+79521179309">{{ props.phone }}</a>
         </dd>
       </div>
       <div class="contacts-info__item contact-info-item" role="listitem">
@@ -17,7 +28,7 @@
           Email
         </dt>
         <dd class="contact-info-item__desc">
-          <a class="contact-info-item__value" href="mailto:info@nigilem.ru">info@nigilem.ru</a>
+          <a class="contact-info-item__value" href="mailto:info@nigilem.ru">{{ props.email }}</a>
         </dd>
       </div>
       <div class="contacts-info__item contact-info-item" role="listitem">
@@ -26,7 +37,7 @@
           Адрес
         </dt>
         <dd class="contact-info-item__desc">
-          <address class="contact-info-item__value">г. Москва, ул. Ленина, д. 1</address>
+          <address class="contact-info-item__value">{{ props.address }}</address>
         </dd>
       </div>
     </dl>

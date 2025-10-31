@@ -23,7 +23,6 @@ interface Post {
   featuredImageUrl: string | null;
 };
 
-
 const { data: posts } = useAsyncData('blog-posts', async (): Promise<Post[]> => {
   const rawPosts = await $fetch<WPPostRaw[]>(
     'https://cms.nigilen.site/wp-json/wp/v2/posts',
