@@ -1,6 +1,6 @@
 <template>
   <header class="header container">
-    <a href="/">
+    <NuxtLink to="/">
       <NuxtImg 
         class="header__logo" 
         src="/logo.svg" 
@@ -8,7 +8,7 @@
         width="99" 
         height="35"
       />
-    </a>
+    </NuxtLink>
     <NavBar/>
   </header>
 </template>
