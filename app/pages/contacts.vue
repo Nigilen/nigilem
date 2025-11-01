@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 
-// const { data: page } = await useAsyncData(() => queryCollection('content').path('/contacts').first());
-
 interface ContactsPageAcf {
   contacts__title: string;
   contacts__phone: string;
@@ -18,20 +16,16 @@ interface WPPage {
 }
 
 const { data: page } = await useAsyncData('page-contacts', async () => {
-
   const pages = await $fetch<WPPage[]>(
     'http://cms.nigilen.site/wp-json/wp/v2/pages', 
     { 
       params: { slug: 'contacts' }
     }
   );
-
   if (!pages.length) {
     throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
   }
-
   return pages[0];
-  
 });
 
 </script>
