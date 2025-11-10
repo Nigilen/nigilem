@@ -28,6 +28,9 @@ const { data: page } = await useAsyncData('page-portfolio', async () => {
   return pages[0];
 });
 
+
+const { firstColumnTitle, secondColumnTitle, itemsFrontGroup, itemsAllGroup, stackItem, stackTitle } = await usePageListSection(49);
+
 </script>
 
 <template>
@@ -36,10 +39,16 @@ const { data: page } = await useAsyncData('page-portfolio', async () => {
     <AppHero :title="page.title.rendered"/>
     <AppAbout />
     <div class="timeline-columns">
-      <AppTimeLine />
-      <AppTimeLine />
+      <AppTimeLine 
+        :title="firstColumnTitle"
+        :list="itemsFrontGroup"
+      />
+      <AppTimeLine 
+        :title="secondColumnTitle"
+        :list="itemsAllGroup"
+      />
     </div>
-    <AppStack />
+    <AppStack :list="stackItem" :title="stackTitle" />
     <AppStack />
   </main>
 </template>

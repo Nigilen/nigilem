@@ -1,23 +1,17 @@
 <script lang="ts" setup>
 
+const props = defineProps<{
+  title: string;
+  list: string[];
+}>();
+
 </script>
 
 <template>
   <section class="stack container">
-    <h2 class="stack__title section-title">Мой стек</h2>
+    <h2 class="stack__title section-title">{{ props.title }}</h2>
     <ul class="stack__list">
-      <li class="stack__item">Website hosting</li>
-      <li class="stack__item">Create logo design</li>
-      <li class="stack__item">Modern and mobile-ready</li>
-      <li class="stack__item">Graphics and animations</li>
-      <li class="stack__item">iOS and android apps</li>
-      <li class="stack__item">Design for print</li>
-      <li class="stack__item">Advertising services include</li>
-      <li class="stack__item">Search engine marketing</li>
-      <li class="stack__item">iOS and android apps</li>
-      <li class="stack__item">Design for print</li>
-      <li class="stack__item">Advertising services include</li>
-      <li class="stack__item">Search engine marketing</li>
+      <li v-for="item in props.list" class="stack__item" :key="item.title">{{ item.title }}</li>
     </ul>
   </section>
 </template>
