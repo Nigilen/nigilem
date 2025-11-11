@@ -1,5 +1,16 @@
 <script lang="ts" setup>
 
+interface Post {
+  id: number;
+  slug: string;
+  title: string;
+  content: string;
+  excerpt: string;
+}
+
+const props = defineProps<{
+  posts: Post[]
+}>();
 
 </script>
 
@@ -7,8 +18,12 @@
 <template>
   <section class="portfolio-grid">
     <ul class="portfolio-grid__list">
-      <li v-for="i in 10" :key="i" class="portfolio-grid__item">
-        <PortfolioItem />
+      <li v-for="post in props.posts" :key="post.id" class="portfolio-grid__item">
+        <PortfolioItem 
+          :title="post.title"
+          :slug="post.slug"
+          :excerpt="post.excerpt"
+        />
       </li>
     </ul>
   </section>

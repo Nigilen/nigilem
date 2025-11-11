@@ -15,7 +15,7 @@ interface WPPage {
   acf: ContactsPageAcf;
 }
 
-const { data: page } = await useAsyncData('page-portfolio', async () => {
+const { data: page } = await useAsyncData('page-resume', async () => {
   const pages = await $fetch<WPPage[]>(
     'http://cms.nigilen.site/wp-json/wp/v2/pages', 
     { 
@@ -29,7 +29,12 @@ const { data: page } = await useAsyncData('page-portfolio', async () => {
 });
 
 
-const { firstColumnTitle, secondColumnTitle, itemsFrontGroup, itemsAllGroup, stackItem, stackTitle } = await usePageListSection(49);
+const { firstColumnTitle, 
+        secondColumnTitle, 
+        itemsFrontGroup, 
+        itemsAllGroup, 
+        stackItem, 
+        stackTitle } = await usePageListSection(49);
 
 </script>
 

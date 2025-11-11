@@ -15,7 +15,7 @@ interface WPPage {
   acf: ContactsPageAcf;
 }
 
-const { data: page } = await useAsyncData('page-portfolio', async () => {
+const { data: page } = await useAsyncData('page-services', async () => {
   const pages = await $fetch<WPPage[]>(
     'http://cms.nigilen.site/wp-json/wp/v2/pages', 
     { 
@@ -28,11 +28,19 @@ const { data: page } = await useAsyncData('page-portfolio', async () => {
   return pages[0];
 });
 
+const portfolioList = await usePostByCategory(4);
+
 </script>
 
 
 <template>
   <main>
     <AppHero :title="page.title.rendered"/>
+
+    <ul>
+      <li v-for="item in portfolioList" :key="item.id">
+        <a :href="`/services/${item.slug}`">{{ item.title }}</a>
+      </li>
+    </ul>
   </main>
 </template>

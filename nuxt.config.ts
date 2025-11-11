@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/blog']
+      routes: ['/blog', '/portfolio', '/services']
     }
   },
 
