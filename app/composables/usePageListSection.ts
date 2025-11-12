@@ -1,6 +1,6 @@
 export const usePageListSection = async (pageId: number) => {
 
-  const page = await $fetch(`http://cms.nigilen.site/wp-json/wp/v2/pages/${pageId}`, {
+  const page = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/pages/${pageId}`, {
   });
 
   const stackTitle = page.acf?.stack_title || '';
@@ -17,14 +17,14 @@ export const usePageListSection = async (pageId: number) => {
     };
   };
 
-  const allItems = await $fetch(`http://cms.nigilen.site/wp-json/wp/v2/experience-list`, {
+  const allItems = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/experience-list`, {
     params: {
       acf_format: 'standard',
       per_page: 100,
     }
   });
 
-  const stackList = await $fetch(`http://cms.nigilen.site/wp-json/wp/v2/techstack-list`, {
+  const stackList = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/techstack-list`, {
     params: {
       acf_format: 'standard',
       per_page: 100,

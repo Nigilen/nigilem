@@ -17,7 +17,7 @@ interface WPPage {
 
 const { data: page } = await useAsyncData('page-resume', async () => {
   const pages = await $fetch<WPPage[]>(
-    'http://cms.nigilen.site/wp-json/wp/v2/pages', 
+    'https://cms.nigilen.site/wp-json/wp/v2/pages', 
     { 
       params: { slug: 'resume' }
     }
