@@ -1,7 +1,6 @@
 export const usePageListSection = async (pageId: number) => {
 
   const page = await $fetch(`http://cms.nigilen.site/wp-json/wp/v2/pages/${pageId}`, {
-    query: { acf_format: 'standard' }
   });
 
   const stackTitle = page.acf?.stack_title || '';
