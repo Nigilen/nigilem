@@ -28,6 +28,8 @@ const { data: page } = await useAsyncData('page-resume', async () => {
   return pages[0];
 });
 
+console.log(page);
+
 
 const { firstColumnTitle, 
         secondColumnTitle, 
@@ -42,7 +44,12 @@ const { firstColumnTitle,
   <main>
     <!-- <AppHero title="Резюме" /> -->
     <AppHero :title="page.title.rendered"/>
-    <AppAbout />
+    <AppAbout 
+      :title="page?.acf.title"
+      :description="page?.acf.description"
+      :image="page?.acf.image"
+      :btnText="page?.acf.download_button"
+    />
     <div class="timeline-columns">
       <AppTimeLine 
         :title="firstColumnTitle"
@@ -54,7 +61,7 @@ const { firstColumnTitle,
       />
     </div>
     <AppStack :list="stackItem" :title="stackTitle" />
-    <AppStack />
+    <!-- <AppStack /> -->
   </main>
 </template>
 

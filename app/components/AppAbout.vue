@@ -1,27 +1,33 @@
 <script lang="ts" setup>
+
+const props = defineProps<{
+  title?: string;
+  image?: string;
+  description?: string;
+  btnText?: string;
+}>();
+
 </script>
 
 <template>
   <section class="about container">
-    <h2 class="section-title about__title">О себе</h2>
+    <h2 class="section-title about__title">{{ props.title }}</h2>
     <div class="about__wrapper">
-      <picture>
-        <source media="(width <= 768px)" srcset="/images/avatar.webp">
-        <img
-          class="about__avatar"
-          src="/images/avatar.webp"
-          srcset="/images/avatar.webp 1x,
-                  /images/avatar-x2.webp 2x,"
-          alt="Николай Юськов"
-          width="100"
-          height="100"
-          loading="lazy"
-        >
-      </picture>
+      <NuxtPicture
+        :img-attrs="{
+          class: 'about__avatar',
+        }"
+        :src="props.image" 
+        alt=""
+        densities="x1 x2"
+        width="100"
+        height="100"
+        loading="lazy"
+      />
       <p class="about__text">
-        Меня зовут Николай, я веб-разработчик из России. Со своей командой мы создаем и продвигаем сайты по всей стране. 
+        {{ props.description }}
       </p>
-      <dl class="about__list">
+      <!-- <dl class="about__list">
         <div class="about__item about-item">
           <dt class="about-item__term">Возраст:</dt>
           <dd class="about-item__desc">36 лет</dd>
@@ -52,27 +58,28 @@
             <a class="about-item__value" href="mailto:info@nigilen.ru">info@nigilen.ru</a>
           </dd>
         </div>
-      </dl>
-      <a class="button about__link" href="#">Скачать резюме</a>
+      </dl> -->
+      <a class="button about__link" href="#">{{ props.btnText }}</a>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 
+
 .about {
   max-inline-size: 967px;
   margin-inline: auto;
   margin-block-end: 180px;
-
+  
   &__wrapper {
     display: grid;
     grid-template-columns: 100px auto;
     grid-template-rows: repeat(3, auto);
     gap: 30px;
   }
-
-  &__avatar {
+  
+  :deep(.about__avatar) {
     display: flex;
     max-inline-size: 100px;
     max-block-size: 100px;

@@ -10,7 +10,18 @@ const props = defineProps<{
 
 <template>
   <a class="portfolio-item" :href="`/portfolio/${props.slug}`">
-    <img class="portfolio-item__img" src="/images/rectangle.png" alt="" width="294" height="294">
+    <NuxtPicture
+      :img-attrs="{
+        class: 'portfolio-item__img',
+      }"
+      src="/images/rectangle.png" 
+      :alt="props.title" 
+      width="294" 
+      height="294"
+      format="[avif, webp]"
+      densities="x1 x2"
+      loading="lazy"
+    />
     <h2 class="portfolio-item__title">{{ props.title }}</h2>
     <p class="portfolio-item__description" v-html="props.excerpt"></p>
   </a>
@@ -21,7 +32,7 @@ const props = defineProps<{
   text-decoration: none;
   color: inherit;
 
-  &__img {
+  :deep(.portfolio-item__img) {
     max-inline-size: 294px;
     inline-size: 100%;
     aspect-ratio: 1 / 1;

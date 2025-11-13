@@ -48,11 +48,11 @@ const { data: posts } = useAsyncData('blog-posts', async (): Promise<Post[]> => 
 <template>
   <section class="blog-grid">
     <ul class="blog-grid__list">
-      <li v-for="post in posts" :key="post" class="blog-grid__item">
+      <li v-for="post in posts" :key="post.id" class="blog-grid__item">
         <BlogItem 
           :title="post.title"
           :description="post.excerpt"
-          :image="post.featuredImageUrl"
+          :image="post.featuredImageUrl || ''"
           :url="`/blog/${post.slug}`"
           :date="post.dateOnly"
         />

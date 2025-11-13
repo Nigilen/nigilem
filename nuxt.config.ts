@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: true,
+
   nitro: {
     prerender: {
       crawlLinks: true,
@@ -38,5 +39,13 @@ export default defineNuxtConfig({
         dir: './app/assets/my-icons',
       }
     ]
-  }
+  },
+
+  image: {
+    format: ['avif', 'webp'], 
+    quality: 80,
+    domains: ['cms.nigilen.site'],
+    provider: 'ipx',
+  },
+
 });

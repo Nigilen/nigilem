@@ -12,13 +12,20 @@ const props = defineProps<{
 
 <template>
   <NuxtLink :to="props.url" class="blog-item">
-    <img 
-      class="blog-item__img" 
+    <NuxtPicture
+      :img-attrs="{
+        class: 'blog-item__img',
+      }"
       :src="props.image" 
       :alt="props.title" 
       width="294" 
       height="294"
-    >
+      format="[avif, webp]"
+      densities="x1 x2"
+      loading="lazy"
+    />
+
+
     <div class="blog-item__text">
       <time class="blog-item__date" :datetime="props.date">{{ props.date }}</time>
       <h2 class="blog-item__title">{{ props.title }}</h2>
@@ -32,7 +39,7 @@ const props = defineProps<{
   text-decoration: none;
   color: inherit;
 
-  &__img {
+  :deep(.blog-item__img) {
     max-inline-size: 294px;
     inline-size: 100%;
     aspect-ratio: 1 / 1;
