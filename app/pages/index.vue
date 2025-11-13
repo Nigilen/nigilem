@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 
-const { data: page } = await useAsyncData(() => queryCollection('content').path('/').first())
+useSeoMeta({
+  title: "Главная",
+  description: 'lol'
+});
+
+
+const { data: page } = await useAsyncData(() => queryCollection('content').path('/').first());
 
 </script>
 

@@ -19,6 +19,13 @@ const { data: page } = await useAsyncData('blog-page', async () => {
   return pages[0];
 });
 
+useSeoMeta({
+  title: page?.value?.acf.seo_title,
+  description: page?.value?.acf.seo_description,
+  ogTitle: page?.value?.acf.seo_title,
+  ogDescription: page?.value?.acf.seo_description,
+});
+
 </script>
 
 <template>

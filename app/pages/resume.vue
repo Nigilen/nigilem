@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 
+
 interface ContactsPageAcf {
   contacts__title: string;
   contacts__phone: string;
@@ -7,6 +8,8 @@ interface ContactsPageAcf {
   contacts__address: string;
   form__title: string;
   form__button: string;
+  seo_title: string;
+  seo_description: string;
 };
 
 interface WPPage {
@@ -28,8 +31,12 @@ const { data: page } = await useAsyncData('page-resume', async () => {
   return pages[0];
 });
 
-console.log(page);
-
+useSeoMeta({
+  title: page?.value?.acf.seo_title,
+  description: page?.value?.acf.seo_description,
+  ogTitle: page?.value?.acf.seo_title,
+  ogDescription: page?.value?.acf.seo_description,
+});
 
 const { firstColumnTitle, 
         secondColumnTitle, 

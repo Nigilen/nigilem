@@ -3,6 +3,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: true,
+  app: {
+    head: {
+      title: 'Nigilen',
+      meta: [
+        { name: 'description', content: 'My amazing site' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      ]
+    },
+  },
 
   nitro: {
     prerender: {

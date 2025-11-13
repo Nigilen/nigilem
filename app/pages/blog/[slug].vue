@@ -28,6 +28,14 @@ const { data: post } = await useFetch(`https://cms.nigilen.site/wp-json/wp/v2/po
 const article = post.value?.[0];
 
 
+useSeoMeta({
+  title: article.acf.seo_title,
+  description: article.acf.seo_description,
+  ogTitle: article.acf.seo_title,
+  ogDescription: article.acf.seo_description,
+});
+
+
 </script>
 
 <template>
