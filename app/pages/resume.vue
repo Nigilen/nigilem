@@ -1,33 +1,29 @@
 <script lang="ts" setup>
 
 
-interface ContactsPageAcf {
-  contacts__title: string;
-  contacts__phone: string;
-  contacts__email: string;
-  contacts__address: string;
-  form__title: string;
-  form__button: string;
+interface ResumePageAcf {
+  title: string;
+  description: string;
+  image: string;
+  download_button: string;
   seo_title: string;
   seo_description: string;
 };
 
 interface WPPage {
   id: number;
-  title: { renderer: string };
-  acf: ContactsPageAcf;
-}
+  title: { rendered: string };
+  acf: ResumePageAcf;
+};
 
-const { data: page } = await useAsyncData('page-resume', async () => {
+const route = useRoute().name;
+
+const { data: page } = await useAsyncData('page-resume', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
     'https://cms.nigilen.site/wp-json/wp/v2/pages', 
-    { 
-      params: { slug: 'resume' }
-    }
+    { params: { slug: route }}
   );
-  if (!pages.length) {
-    throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  }
+  if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
   return pages[0];
 });
 
@@ -42,20 +38,19 @@ const { firstColumnTitle,
         secondColumnTitle, 
         itemsFrontGroup, 
         itemsAllGroup, 
-        stackItem, 
+        stackItems, 
         stackTitle } = await usePageListSection(49);
 
 </script>
 
 <template>
   <main>
-    <!-- <AppHero title="Резюме" /> -->
-    <AppHero :title="page.title.rendered"/>
+    <AppHero :title="page?.title.rendered"/>
     <AppAbout 
       :title="page?.acf.title"
       :description="page?.acf.description"
       :image="page?.acf.image"
-      :btnText="page?.acf.download_button"
+      :btn-text="page?.acf.download_button"
     />
     <div class="timeline-columns">
       <AppTimeLine 
@@ -67,7 +62,7 @@ const { firstColumnTitle,
         :list="itemsAllGroup"
       />
     </div>
-    <AppStack :list="stackItem" :title="stackTitle" />
+    <AppStack :list="stackItems" :title="stackTitle" />
     <!-- <AppStack /> -->
   </main>
 </template>

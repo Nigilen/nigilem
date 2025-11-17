@@ -13,23 +13,20 @@ interface ContactsPageAcf {
 
 interface WPPage {
   id: number;
-  title: { renderer: string };
+  title: { rendered: string };
   acf: ContactsPageAcf;
-}
+};
 
-const { data: page } = await useAsyncData('page-contacts', async () => {
+const route = useRoute().name;
+
+const { data: page } = await useAsyncData('page-contacts', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
     'https://cms.nigilen.site/wp-json/wp/v2/pages', 
-    { 
-      params: { slug: 'contacts' }
-    }
+    { params: { slug: route } }
   );
-  if (!pages.length) {
-    throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  }
+  if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
   return pages[0];
 });
-
 
 useSeoMeta({
   title: page?.value?.acf.seo_title,
@@ -38,22 +35,21 @@ useSeoMeta({
   ogDescription: page?.value?.acf.seo_description,
 });
 
-
 </script>
 
 <template>
   <main>
-    <AppHero :title="page.title.rendered"/>
+    <AppHero :title="page?.title?.rendered"/>
 
     <AppContactsInfo
-      :title="page.acf.contacts__title"
-      :phone="page.acf.contacts__phone"
-      :email="page.acf.contacts__email"
-      :address="page.acf.contacts__address"
+      :title="page?.acf?.contacts__title"
+      :phone="page?.acf?.contacts__phone"
+      :email="page?.acf?.contacts__email"
+      :address="page?.acf?.contacts__address"
     />
     <AppContactsForm 
-      :title="page.acf.form__title"
-      :button="page.acf.form__button"
+      :title="page?.acf?.form__title"
+      :button="page?.acf?.form__button"
     />
   </main>
 </template>

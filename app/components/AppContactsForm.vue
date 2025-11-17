@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 
 const props = defineProps<{
-  title: string;
-  button: string;
+  title?: string;
+  button?: string;
 }>();
 
 const handleSubmit = () => {
-  console.log('submit')
-}
+  console.log('submit');
+};
 
 
 

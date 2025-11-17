@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 
 const props = defineProps<{
-  title: string;
-  phone: string;
-  email: string;
-  address: string;
+  title?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
 }>();
 
 </script>

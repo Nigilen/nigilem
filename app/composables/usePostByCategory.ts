@@ -1,31 +1,43 @@
-interface IPost {
-  id: number;
-  slug: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-  excerpt: {
-    rendered: string;
-  };
+interface WPFeaturedMedia {
+  source_url: string;
 };
 
-export const usePostByCategory = async (categoryId: number) => {
-  const posts = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/posts`, {
-    params: {
-      categories: categoryId,
-      per_page: 20,
-      _embed: true,
-    }
-  });
+interface IPost {
+  id: number;
+  date: string;
+  slug: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  _embedded?: { 'wp:featuredmedia'?: WPFeaturedMedia[] };
+};
 
-  return posts.map((post: IPost) => ({
+interface Post {
+  id: number;
+  dateOnly: string | undefined;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  featuredImageUrl: string | null;
+};
+
+export const usePostByCategory = async (categoryId?: number): Promise<Post[]> => {
+  const params: Record<string, string | number | boolean> = {
+    per_page: 50,
+    _embed: true,
+  };
+  if (categoryId) params.categories = categoryId;
+
+  const posts = await $fetch<IPost[]>(`https://cms.nigilen.site/wp-json/wp/v2/posts`, { params });
+
+  return posts.map(post => ({
     id: post.id,
-    slug: post.slug,
-    excerpt: post.excerpt.rendered,
     title: post.title.rendered,
+    slug: post.slug,
+    dateOnly: post.date,
+    excerpt: post.excerpt.rendered,
     content: post.content.rendered,
+    featuredImageUrl: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null
   }));
-}
+};

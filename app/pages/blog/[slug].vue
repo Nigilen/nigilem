@@ -1,50 +1,45 @@
 <script setup lang="ts">
 
-// import { useGraphql } from '~/composables/useWpGraphql';
-// import type { PostsQueryResponse } from '~/composables/useWpGraphql';
+interface WPPageAcf {
+  seo_title: string;
+  seo_description: string;
+};
 
-// const result = await useGraphql<PostsQueryResponse>(`
-//   {
-//     posts {
-//       nodes {
-//         slug
-//         title
-//         content
-//       }
-//     }
-//   }
-// `);
-
-// const posts = result?.posts?.nodes?.map((post) => post.title) || [];
-// const content = result?.posts?.nodes?.map((post) => post.content) || [];
-// const slug = result?.posts?.nodes?.map((post) => post.slug) || [];
-
+interface WPPage {
+  title: { rendered: string };
+  content: { rendered: string };
+  acf: WPPageAcf;
+};
 
 const route = useRoute();
+
 const slug = route.params.slug;
 
-const { data: post } = await useFetch(`https://cms.nigilen.site/wp-json/wp/v2/posts?slug=${slug}`);
+const { data: blogPost } = await useAsyncData('blog-post', async (): Promise<WPPage | undefined> => {
+  const dataArr = await $fetch<WPPage[]>('https://cms.nigilen.site/wp-json/wp/v2/posts', {
+    params: { slug: slug }
+  });
+  if (!dataArr.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
 
-const article = post.value?.[0];
-
-
-useSeoMeta({
-  title: article.acf.seo_title,
-  description: article.acf.seo_description,
-  ogTitle: article.acf.seo_title,
-  ogDescription: article.acf.seo_description,
+  return dataArr[0];
 });
 
+useSeoMeta({
+  title: blogPost?.value?.acf.seo_title || '',
+  description: blogPost?.value?.acf.seo_description || '',
+  ogTitle: blogPost?.value?.acf.seo_title || '',
+  ogDescription: blogPost?.value?.acf.seo_description || '',
+});
 
 </script>
 
 <template>
   <main>
     <AppHero 
-      :title="article.title.rendered"
+      :title="blogPost?.title.rendered || ''"
     />
     <article class="article">
-      <div v-html="article.content.rendered" />
+      <div v-html="blogPost?.content.rendered || ''" />
     </article>
   </main>
 </template>

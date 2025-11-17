@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import '~/assets/scss/main.scss';
+
 useHead({
   titleTemplate: '%s | Nigilen',
 });

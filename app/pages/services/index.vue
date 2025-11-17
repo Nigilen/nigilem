@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 
-
-
 interface ContactsPageAcf {
   contacts__title: string;
   contacts__phone: string;
@@ -15,24 +13,21 @@ interface ContactsPageAcf {
 
 interface WPPage {
   id: number;
-  title: { renderer: string };
+  title: { rendered: string };
   acf: ContactsPageAcf;
 }
 
-const { data: page } = await useAsyncData('page-services', async () => {
+const route = useRoute().name;
+
+const { data: page } = await useAsyncData('page-services', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
     'https://cms.nigilen.site/wp-json/wp/v2/pages', 
-    { 
-      params: { slug: 'services' }
-    }
+    { params: { slug: route } }
   );
-  if (!pages.length) {
-    throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  }
+  if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
   return pages[0];
 });
 
-const portfolioList = await usePostByCategory(4);
 
 useSeoMeta({
   title: page?.value?.acf.seo_title,
@@ -41,12 +36,17 @@ useSeoMeta({
   ogDescription: page?.value?.acf.seo_description,
 });
 
+
+
+
+const portfolioList = await usePostByCategory(4);
+
 </script>
 
 
 <template>
   <main>
-    <AppHero :title="page.title.rendered"/>
+    <AppHero :title="page?.title.rendered"/>
 
     <ul>
       <li v-for="item in portfolioList" :key="item.id">

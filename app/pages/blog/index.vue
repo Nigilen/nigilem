@@ -1,21 +1,24 @@
 <script lang="ts" setup>
 
+interface WPPageAcf {
+  seo_title: string;
+  seo_description: string;
+};
 
 interface WPPage {
   id: number;
   title: { rendered: string };
+  acf: WPPageAcf;
 };
 
-const { data: page } = await useAsyncData('blog-page', async () => {
+const route = useRoute().name;
+
+const { data: page } = await useAsyncData('blog-page', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
     'https://cms.nigilen.site/wp-json/wp/v2/pages', 
-    { 
-      params: { slug: 'blog' }
-    }
+    { params: { slug: route } }
   );
-  if (!pages.length) {
-    throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  }
+  if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
   return pages[0];
 });
 
@@ -26,11 +29,14 @@ useSeoMeta({
   ogDescription: page?.value?.acf.seo_description,
 });
 
+const posts = await usePostByCategory();
+
+
 </script>
 
 <template>
   <main>
     <AppHero :title="page?.title.rendered"/>
-    <BlogGrid />
+    <BlogGrid :posts="posts"/>
   </main>
 </template>
