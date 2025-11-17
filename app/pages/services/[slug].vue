@@ -12,9 +12,10 @@ interface WPPage {
 };
 
 const route = useRoute().params.slug;
+const config = useRuntimeConfig();
 
 const { data: services } = await useAsyncData('services-item', async (): Promise<WPPage | undefined> => {
-  const dataArr = await $fetch<WPPage[]>('https://cms.nigilen.site/wp-json/wp/v2/posts', {
+  const dataArr = await $fetch<WPPage[]>(`${config.public.API_URL}/wp-json/wp/v2/posts`, {
     params: { slug: route }
   });
   if (!dataArr.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });

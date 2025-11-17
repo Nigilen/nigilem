@@ -22,14 +22,14 @@ interface Post {
   featuredImageUrl: string | null;
 };
 
-export const usePostByCategory = async (categoryId?: number): Promise<Post[]> => {
+export const usePostByCategory = async (apiUrl: string, categoryId?: number): Promise<Post[]> => {
   const params: Record<string, string | number | boolean> = {
     per_page: 50,
     _embed: true,
   };
   if (categoryId) params.categories = categoryId;
 
-  const posts = await $fetch<IPost[]>(`https://cms.nigilen.site/wp-json/wp/v2/posts`, { params });
+  const posts = await $fetch<IPost[]>(`${apiUrl}/wp-json/wp/v2/posts`, { params });
 
   return posts.map(post => ({
     id: post.id,

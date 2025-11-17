@@ -13,9 +13,10 @@ interface WPPage {
 
 const route = useRoute();
 const slug = route.params.slug;
+const config = useRuntimeConfig();
 
 const { data: portfolioPost } = await useAsyncData('portfolio-post', async(): Promise<WPPage | undefined> => {
-  const dataArr = await $fetch<WPPage[]>('https://cms.nigilen.site/wp-json/wp/v2/posts', {
+  const dataArr = await $fetch<WPPage[]>(`${config.public.API_URL}/wp-json/wp/v2/posts`, {
     params: {
       slug: slug
     }

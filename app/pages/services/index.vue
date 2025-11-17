@@ -19,9 +19,11 @@ interface WPPage {
 
 const route = useRoute().name;
 
+const config = useRuntimeConfig();
+
 const { data: page } = await useAsyncData('page-services', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
-    'https://cms.nigilen.site/wp-json/wp/v2/pages', 
+    `${config.public.API_URL}/wp-json/wp/v2/pages`, 
     { params: { slug: route } }
   );
   if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
@@ -39,7 +41,7 @@ useSeoMeta({
 
 
 
-const portfolioList = await usePostByCategory(4);
+const portfolioList = await usePostByCategory(config.public.API_URL, 4);
 
 </script>
 

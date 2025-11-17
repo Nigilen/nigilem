@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 
-
 interface ResumePageAcf {
   title: string;
   description: string;
@@ -18,9 +17,11 @@ interface WPPage {
 
 const route = useRoute().name;
 
+const config = useRuntimeConfig();
+
 const { data: page } = await useAsyncData('page-resume', async (): Promise<WPPage | undefined> => {
   const pages = await $fetch<WPPage[]>(
-    'https://cms.nigilen.site/wp-json/wp/v2/pages', 
+    `${config.public.API_URL}/wp-json/wp/v2/pages`, 
     { params: { slug: route }}
   );
   if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
@@ -39,7 +40,7 @@ const { firstColumnTitle,
         itemsFrontGroup, 
         itemsAllGroup, 
         stackItems, 
-        stackTitle } = await usePageListSection(49);
+        stackTitle } = await usePageListSection(49, config.public.API_URL);
 
 </script>
 

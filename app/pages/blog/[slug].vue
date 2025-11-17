@@ -15,8 +15,10 @@ const route = useRoute();
 
 const slug = route.params.slug;
 
+const config = useRuntimeConfig();
+
 const { data: blogPost } = await useAsyncData('blog-post', async (): Promise<WPPage | undefined> => {
-  const dataArr = await $fetch<WPPage[]>('https://cms.nigilen.site/wp-json/wp/v2/posts', {
+  const dataArr = await $fetch<WPPage[]>(`${config.public.API_URL}/wp-json/wp/v2/posts`, {
     params: { slug: slug }
   });
   if (!dataArr.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });

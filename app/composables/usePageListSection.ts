@@ -1,15 +1,14 @@
-export const usePageListSection = async (pageId: number) => {
+export const usePageListSection = async (pageId: number, apiUrl: string) => {
   // просто базовые параметры запросов
   const params = { acf_format: 'standard', per_page: 100 };
   // определеяем, на какой странице работаем
-  const page = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/pages/${pageId}`, {});
+  const page = await $fetch(`${apiUrl}/wp-json/wp/v2/pages/${pageId}`, {});
 
   // собираем со страницы данные (тут сильно привязанно к конкретной странице)
   const stackTitle = page?.acf?.stack_title || '';
   const firstColumnTitle = page?.acf?.first_column_title || '';
   const secondColumnTitle = page?.acf?.second_column_title || '';
   const selectedListItems = page?.acf?.selected_list_items || [];
-  
 
   // прежде, проверяем есть ли данные selected_list_items
   if (!Array.isArray(selectedListItems) || selectedListItems.length === 0) {
@@ -25,14 +24,14 @@ export const usePageListSection = async (pageId: number) => {
   const itemsById = new Map();
 
   // целенаправленно забираем список один — опыт (обьекты)
-  const allItems = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/experience-list`, { params });
+  const allItems = await $fetch(`${apiUrl}/wp-json/wp/v2/experience-list`, { params });
   // заполняем им мапу под его id-шники
   allItems.forEach((item: any) => {
     itemsById.set(item.id, item);
   });
   
   // целенаправленно забираем список второй — стек (просто строки)
-  const stackList = await $fetch(`https://cms.nigilen.site/wp-json/wp/v2/techstack-list`, { params });
+  const stackList = await $fetch(`${apiUrl}/wp-json/wp/v2/techstack-list`, { params });
   // формируем мапу из объектов со строками, тут с ним закончили
   const stackItems = stackList.map((item: any) => ({
     title: item.title.rendered,

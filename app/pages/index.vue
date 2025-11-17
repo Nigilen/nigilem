@@ -6,8 +6,6 @@ useSeoMeta({
 });
 
 
-// const { data: page } = await useAsyncData(() => queryCollection('content').path('/').first());
-
 </script>
 
 <template>

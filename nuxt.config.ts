@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: true,
+
+  runtimeConfig: {
+    public: {
+      API_URL: process.env.API_URL
+    }
+  },
+
   app: {
     head: {
       title: 'Nigilen',
