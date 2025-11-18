@@ -1,32 +1,14 @@
 <script setup lang="ts">
-
-interface WPPageAcf {
-  seo_title: string;
-  seo_description: string;
-};
-
-interface WPPage {
-  title: { rendered: string };
-  content: { rendered: string };
-  acf: WPPageAcf;
-};
-
 const route = useRoute().params.slug;
 const config = useRuntimeConfig();
 
-const { data: services } = await useAsyncData('services-item', async (): Promise<WPPage | undefined> => {
-  const dataArr = await $fetch<WPPage[]>(`${config.public.API_URL}/wp-json/wp/v2/posts`, {
-    params: { slug: route }
-  });
-  if (!dataArr.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  return dataArr[0];
-});
+const post = await usePost(config, route);
 
 useSeoMeta({
-  title: services?.value?.acf.seo_title,
-  description: services?.value?.acf.seo_description,
-  ogTitle: services?.value?.acf.seo_title,
-  ogDescription: services?.value?.acf.seo_description,
+  title: post?.value?.acf.seo_title,
+  description: post?.value?.acf.seo_description,
+  ogTitle: post?.value?.acf.seo_title,
+  ogDescription: post?.value?.acf.seo_description,
 });
 
 </script>
@@ -34,12 +16,10 @@ useSeoMeta({
 <template>
   <main>
     <AppHero 
-      :title="services?.title.rendered"
+      :title="post?.title.rendered"
     />
     <article class="article">
-      
-    <div v-html="services?.content.rendered"></div>
-
+      <div v-html="post?.content.rendered"></div>
     </article>
   </main>
 </template>

@@ -1,20 +1,11 @@
 <script lang="ts" setup>
-
-interface Post {
-  id: number;
-  dateOnly: string | undefined;
-  slug: string;
-  title: string;
-  excerpt: string;
-  featuredImageUrl: string | null;
-};
+import type { Post } from '~/types';
 
 const props = defineProps<{
   posts: Post[] | undefined;
 }>();
 
 </script>
-
 
 <template>
   <section class="blog-grid">

@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 
+interface ListItem {
+  id: number;
+  text: string;
+};
+
+
 const props = defineProps<{
   title: string;
-  list: string[];
+  list: ListItem[];
 }>();
 
 </script>
@@ -11,7 +17,7 @@ const props = defineProps<{
   <section class="stack container">
     <h2 class="stack__title section-title">{{ props.title }}</h2>
     <ul class="stack__list">
-      <li v-for="item in props.list" class="stack__item" :key="item.title">{{ item.title }}</li>
+      <li v-for="item in props.list" :key="item.text" class="stack__item">{{ item.text }}</li>
     </ul>
   </section>
 </template>

@@ -1,26 +1,4 @@
-interface WPFeaturedMedia {
-  source_url: string;
-};
-
-interface IPost {
-  id: number;
-  date: string;
-  slug: string;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  content: { rendered: string };
-  _embedded?: { 'wp:featuredmedia'?: WPFeaturedMedia[] };
-};
-
-interface Post {
-  id: number;
-  dateOnly: string | undefined;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  featuredImageUrl: string | null;
-};
+import type { Post, WPPost } from '~/types';
 
 export const usePostByCategory = async (apiUrl: string, categoryId?: number): Promise<Post[]> => {
   const params: Record<string, string | number | boolean> = {
@@ -29,7 +7,7 @@ export const usePostByCategory = async (apiUrl: string, categoryId?: number): Pr
   };
   if (categoryId) params.categories = categoryId;
 
-  const posts = await $fetch<IPost[]>(`${apiUrl}/wp-json/wp/v2/posts`, { params });
+  const posts = await $fetch<WPPost[]>(`${apiUrl}/wp-json/wp/v2/posts`, { params });
 
   return posts.map(post => ({
     id: post.id,

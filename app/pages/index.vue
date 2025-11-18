@@ -5,7 +5,6 @@ useSeoMeta({
   description: 'lol'
 });
 
-
 </script>
 
 <template>

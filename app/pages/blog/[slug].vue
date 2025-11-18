@@ -1,36 +1,15 @@
 <script setup lang="ts">
 
-interface WPPageAcf {
-  seo_title: string;
-  seo_description: string;
-};
-
-interface WPPage {
-  title: { rendered: string };
-  content: { rendered: string };
-  acf: WPPageAcf;
-};
-
-const route = useRoute();
-
-const slug = route.params.slug;
-
+const route = useRoute().params.slug;
 const config = useRuntimeConfig();
 
-const { data: blogPost } = await useAsyncData('blog-post', async (): Promise<WPPage | undefined> => {
-  const dataArr = await $fetch<WPPage[]>(`${config.public.API_URL}/wp-json/wp/v2/posts`, {
-    params: { slug: slug }
-  });
-  if (!dataArr.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-
-  return dataArr[0];
-});
+const post = await usePost(config, route);
 
 useSeoMeta({
-  title: blogPost?.value?.acf.seo_title || '',
-  description: blogPost?.value?.acf.seo_description || '',
-  ogTitle: blogPost?.value?.acf.seo_title || '',
-  ogDescription: blogPost?.value?.acf.seo_description || '',
+  title: post?.value?.acf.seo_title || '',
+  description: post?.value?.acf.seo_description || '',
+  ogTitle: post?.value?.acf.seo_title || '',
+  ogDescription: post?.value?.acf.seo_description || '',
 });
 
 </script>
@@ -38,10 +17,10 @@ useSeoMeta({
 <template>
   <main>
     <AppHero 
-      :title="blogPost?.title.rendered || ''"
+      :title="post?.title.rendered || ''"
     />
     <article class="article">
-      <div v-html="blogPost?.content.rendered || ''" />
+      <div v-html="post?.content.rendered || ''" />
     </article>
   </main>
 </template>

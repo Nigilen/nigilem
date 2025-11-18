@@ -1,32 +1,9 @@
 <script lang="ts" setup>
 
-interface ResumePageAcf {
-  title: string;
-  description: string;
-  image: string;
-  download_button: string;
-  seo_title: string;
-  seo_description: string;
-};
-
-interface WPPage {
-  id: number;
-  title: { rendered: string };
-  acf: ResumePageAcf;
-};
-
 const route = useRoute().name;
-
 const config = useRuntimeConfig();
 
-const { data: page } = await useAsyncData('page-resume', async (): Promise<WPPage | undefined> => {
-  const pages = await $fetch<WPPage[]>(
-    `${config.public.API_URL}/wp-json/wp/v2/pages`, 
-    { params: { slug: route }}
-  );
-  if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-  return pages[0];
-});
+const page = await usePage(config, route);
 
 useSeoMeta({
   title: page?.value?.acf.seo_title,
@@ -35,12 +12,23 @@ useSeoMeta({
   ogDescription: page?.value?.acf.seo_description,
 });
 
-const { firstColumnTitle, 
-        secondColumnTitle, 
-        itemsFrontGroup, 
-        itemsAllGroup, 
-        stackItems, 
-        stackTitle } = await usePageListSection(49, config.public.API_URL);
+const { title: expDevTitle, clearSelectedItems: expDevItems } = await usePageListSection(
+  49, 
+  config.public.API_URL, 
+  'expdev',
+);
+
+const { title: expItTitle, clearSelectedItems: expItItems } = await usePageListSection(
+  49, 
+  config.public.API_URL, 
+  'expit',
+);
+
+const { title: stackTitle, clearSelectedItems: stackItems } = await usePageListSection(
+  49, 
+  config.public.API_URL, 
+  'techstack',
+);
 
 </script>
 
@@ -55,16 +43,15 @@ const { firstColumnTitle,
     />
     <div class="timeline-columns">
       <AppTimeLine 
-        :title="firstColumnTitle"
-        :list="itemsFrontGroup"
+        :title="expDevTitle"
+        :list="expDevItems"
       />
       <AppTimeLine 
-        :title="secondColumnTitle"
-        :list="itemsAllGroup"
+        :title="expItTitle"
+        :list="expItItems"
       />
     </div>
     <AppStack :list="stackItems" :title="stackTitle" />
-    <!-- <AppStack /> -->
   </main>
 </template>
 

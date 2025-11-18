@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 
-interface ExpListItem {
-  title: string;
-  date_text: string;
-  description: string;
-}
+interface ListItem {
+  id: number;
+  text: string;
+  date?: string;
+};
 
 const props = defineProps<{
-  title: string;
-  list: ExpListItem[];
+  title?: string;
+  list: ListItem[];
 }>();
 
 </script>
@@ -23,13 +23,13 @@ const props = defineProps<{
         class="timeline__item timeline-item"
       >
         <dt class="timeline-item__term">
-          {{ item.date_text }}
+          {{ item.date }}
         </dt>
-        <dd class="timeline-item__desc">
+        <!-- <dd class="timeline-item__desc">
           {{ item.title }}
-        </dd>
+        </dd> -->
         <dd class="timeline-item__details">
-          {{ item.description }}
+          {{ item.text }}
         </dd>
       </div>
     </dl>

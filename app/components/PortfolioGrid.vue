@@ -1,19 +1,11 @@
 <script lang="ts" setup>
-
-interface Post {
-  id: number;
-  slug: string;
-  title: string;
-  content: string;
-  excerpt: string;
-}
+import type { Post } from '~/types';
 
 const props = defineProps<{
   posts: Post[]
 }>();
 
 </script>
-
 
 <template>
   <section class="portfolio-grid">
