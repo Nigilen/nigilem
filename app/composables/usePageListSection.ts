@@ -18,8 +18,8 @@ export const usePageListSection = async (
   const params = { acf_format: 'standard', per_page: 100 };
   const page = await $fetch(`${apiUrl}/wp-json/wp/v2/pages/${pageId}`);
 
-  const title = page.acf?.[`${listName}_title`];
-  const selectedListItems = page.acf?.[`${listName}_items_selected`];
+  const title = page?.acf?.[`${listName}_title`];
+  const selectedListItems = page?.acf?.[`${listName}_items_selected`];
 
   if (!Array.isArray(selectedListItems) || selectedListItems.length === 0) {
     return {

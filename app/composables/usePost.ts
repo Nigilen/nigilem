@@ -1,14 +1,24 @@
-import type { RuntimeConfig } from 'nuxt/schema';
-import type { WPPostPage } from '~/types';
+import type { WPPost } from '~/types';
 
-export const usePost = async (config: RuntimeConfig, route: string | string[] | undefined) => {
-  const { data: page } = await useAsyncData(`'page-${String(route)}'`, async (): Promise<WPPostPage | undefined> => {
-    const pages = await $fetch<WPPostPage[]>(
-      `${config.public.API_URL}/wp-json/wp/v2/posts`, 
-      { params: { slug: route } }
+type ContentType = 'pages' | 'posts';
+
+export const usePost = async (contentType: ContentType, slug: string) => {
+  const cache = useState<Record<string, WPPost | undefined>>(`${contentType}-cache`, () => ({}));
+  const cacheKey = `${contentType}-${slug}`;
+
+  if(cache.value[cacheKey]) {
+    return computed(() => cache.value[cacheKey]);
+  };
+
+  const { data } = await useAsyncData(cacheKey, async () => {
+    const items = await $fetch<WPPost[]>(
+      `${useRuntimeConfig().public.API_URL}/wp-json/wp/v2/${contentType}`, 
+      { params: { slug: slug } }
     );
-    if (!pages.length) throw createError({ statusCode: 404, statusMessage: 'Такой страницы нет' });
-    return pages[0];
+    if (!items.length) throw createError({ statusCode: 404, statusMessage: `Такой ${contentType === 'posts' ? 'статьи' : 'страницы'} нет` });
+    const item = items[0];
+    cache.value[cacheKey] = item;
+    return item;
   });
-  return page;
+  return data;
 };

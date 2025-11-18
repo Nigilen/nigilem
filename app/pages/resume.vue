@@ -3,7 +3,7 @@
 const route = useRoute().name;
 const config = useRuntimeConfig();
 
-const page = await usePage(config, route);
+const page = await usePost('pages', String(route));
 
 useSeoMeta({
   title: page?.value?.acf.seo_title,

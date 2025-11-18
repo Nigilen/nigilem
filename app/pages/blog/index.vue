@@ -3,13 +3,13 @@
 const route = useRoute().name;
 const config = useRuntimeConfig();
 
-const page = await usePage(config, route);
+const page = await usePost('pages', String(route));
 
 useSeoMeta({
-  title: page?.value?.acf.seo_title,
-  description: page?.value?.acf.seo_description,
-  ogTitle: page?.value?.acf.seo_title,
-  ogDescription: page?.value?.acf.seo_description,
+  title: page?.value?.acf.seo_title || '',
+  description: page?.value?.acf.seo_description || '',
+  ogTitle: page?.value?.acf.seo_title || '',
+  ogDescription: page?.value?.acf.seo_description || '',
 });
 
 const posts = await usePostByCategory(config.public.API_URL);

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 const route = useRoute().params.slug;
-const config = useRuntimeConfig();
 
-const post = await usePost(config, route);
+const post = await usePost('posts', String(route));
 
 useSeoMeta({
   title: post?.value?.acf.seo_title,

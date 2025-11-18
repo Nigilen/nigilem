@@ -1,34 +1,43 @@
-export interface ContactsPageAcf {
-  contacts__title: string;
-  contacts__phone: string;
-  contacts__email: string;
-  contacts__address: string;
-  form__title: string;
-  form__button: string;
-  seo_title: string;
-  seo_description: string;
+export interface PageAcf {
+  title?: string;
+  description?: string;
+  image?: string;
+  download_button?: string;
+  contacts__title?: string;
+  contacts__phone?: string;
+  contacts__email?: string;
+  contacts__address?: string;
+  form__title?: string;
+  form__button?: string;
+  seo_title?: string;
+  seo_description?: string;
 };
 
-export interface ResumePageAcf {
-  title: string;
-  description: string;
-  image: string;
-  download_button: string;
+interface WPFeaturedMedia {
+  source_url: string;
 };
 
-export interface WPContactsPage {
+interface WPRendered {
+  rendered: string;
+};
+
+export interface WPPost {
   id: number;
-  title: { rendered: string };
-  acf: ContactsPageAcf & ResumePageAcf;
+  date: string;
+  slug: string;
+  title: WPRendered;
+  excerpt: WPRendered;
+  content: WPRendered;
+  acf: PageAcf;
+  _embedded?: { 'wp:featuredmedia'?: WPFeaturedMedia[] };
 };
 
-export interface WPPostAcfPage {
-  seo_title: string;
-  seo_description: string;
-};
-
-export interface WPPostPage {
-  title: { rendered: string };
-  content: { rendered: string };
-  acf: WPPostAcfPage;
+export interface Post {
+  id: number;
+  dateOnly?: string | undefined;
+  slug: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  featuredImageUrl?: string | null;
 };
