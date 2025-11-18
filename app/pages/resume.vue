@@ -6,10 +6,10 @@ const config = useRuntimeConfig();
 const page = await usePost('pages', String(route));
 
 useSeoMeta({
-  title: page?.value?.acf.seo_title,
-  description: page?.value?.acf.seo_description,
-  ogTitle: page?.value?.acf.seo_title,
-  ogDescription: page?.value?.acf.seo_description,
+  title: page?.value?.acf?.seo_title,
+  description: page?.value?.acf?.seo_description,
+  ogTitle: page?.value?.acf?.seo_title,
+  ogDescription: page?.value?.acf?.seo_description,
 });
 
 const { title: expDevTitle, clearSelectedItems: expDevItems } = await usePageListSection(
@@ -36,10 +36,10 @@ const { title: stackTitle, clearSelectedItems: stackItems } = await usePageListS
   <main>
     <AppHero :title="page?.title.rendered"/>
     <AppAbout 
-      :title="page?.acf.title"
-      :description="page?.acf.description"
-      :image="page?.acf.image"
-      :btn-text="page?.acf.download_button"
+      :title="page?.acf?.title"
+      :description="page?.acf?.description"
+      :image="page?.acf?.image"
+      :btn-text="page?.acf?.download_button"
     />
     <div class="timeline-columns">
       <AppTimeLine 

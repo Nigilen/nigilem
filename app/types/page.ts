@@ -1,16 +1,22 @@
-export interface PageAcf {
+export interface CommonAcfFields {
+  seo_title?: string;
+  seo_description?: string;
+};
+
+export interface ResumeAcfFields extends CommonAcfFields {
   title?: string;
   description?: string;
-  image?: string;
+  image ?: string;
   download_button?: string;
+}
+
+export interface PageAcf extends ResumeAcfFields {
   contacts__title?: string;
   contacts__phone?: string;
   contacts__email?: string;
   contacts__address?: string;
   form__title?: string;
   form__button?: string;
-  seo_title?: string;
-  seo_description?: string;
 };
 
 interface WPFeaturedMedia {
@@ -21,20 +27,22 @@ interface WPRendered {
   rendered: string;
 };
 
-export interface WPPost {
+export interface WPPost<T = PageAcf> {
   id: number;
   date: string;
   slug: string;
   title: WPRendered;
   excerpt: WPRendered;
   content: WPRendered;
-  acf: PageAcf;
-  _embedded?: { 'wp:featuredmedia'?: WPFeaturedMedia[] };
+  acf?: T | null;
+  _embedded?: { 
+    'wp:featuredmedia'?: WPFeaturedMedia[] 
+  };
 };
 
 export interface Post {
   id: number;
-  dateOnly?: string | undefined;
+  dateOnly?: string;
   slug: string;
   title: string;
   content: string;

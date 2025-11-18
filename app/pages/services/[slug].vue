@@ -4,10 +4,10 @@ const route = useRoute().params.slug;
 const post = await usePost('posts', String(route));
 
 useSeoMeta({
-  title: post?.value?.acf.seo_title,
-  description: post?.value?.acf.seo_description,
-  ogTitle: post?.value?.acf.seo_title,
-  ogDescription: post?.value?.acf.seo_description,
+  title: post?.value?.acf?.seo_title,
+  description: post?.value?.acf?.seo_description,
+  ogTitle: post?.value?.acf?.seo_title,
+  ogDescription: post?.value?.acf?.seo_description,
 });
 
 </script>
