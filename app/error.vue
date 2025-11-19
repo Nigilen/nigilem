@@ -3,7 +3,8 @@
 </script>
 
 <template>
-  <div>
+  <NuxtLayout>
+    <h1>Мда...</h1>
     <NuxtLink to="/">Go back home</NuxtLink>
-  </div>
+  </NuxtLayout>
 </template>

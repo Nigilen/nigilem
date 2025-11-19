@@ -1,11 +1,8 @@
 <script lang="ts" setup>
 
-
 const route = useRoute().name;
 
 const page = await usePost('pages', String(route));
-
-
 
 useSeoMeta({
   title: page?.value?.acf?.seo_title,
