@@ -16,11 +16,11 @@ useSeoMeta({
 <template>
   <main>
     <AppHero 
-      :title="post?.title.rendered"
+      :title="post?.title"
     />
     <article class="article">
 
-    <div v-html="post?.content.rendered"></div>
+    <div v-html="post?.content"></div>
 
     </article>
   </main>

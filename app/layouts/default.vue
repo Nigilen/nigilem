@@ -5,6 +5,11 @@
 
 <template>
   <div class="main">
+    <NuxtLoadingIndicator 
+      :height="2"
+      :duration="1000"
+      color="#000000"
+    />
     <AppHeader />
 
     <slot />

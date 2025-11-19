@@ -21,7 +21,7 @@ const portfolioList = await usePostByCategory(config.public.API_URL, 3);
 
 <template>
   <main>
-    <AppHero :title="page?.title.rendered"/>
+    <AppHero :title="page?.title"/>
 
     <PortfolioGrid :posts="portfolioList"/>
   </main>

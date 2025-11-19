@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 
+
 const route = useRoute().name;
 
 const page = await usePost('pages', String(route));
+
+
 
 useSeoMeta({
   title: page?.value?.acf?.seo_title,
@@ -15,7 +18,7 @@ useSeoMeta({
 
 <template>
   <main>
-    <AppHero :title="page?.title?.rendered"/>
+    <AppHero :title="page?.title"/>
 
     <AppContactsInfo
       :title="page?.acf?.contacts__title"

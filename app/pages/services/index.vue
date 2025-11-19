@@ -17,7 +17,7 @@ const portfolioList = await usePostByCategory(config.public.API_URL, 4);
 
 <template>
   <main>
-    <AppHero :title="page?.title.rendered"/>
+    <AppHero :title="page?.title"/>
 
     <ul>
       <li v-for="item in portfolioList" :key="item.id">

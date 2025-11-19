@@ -34,7 +34,7 @@ const { title: stackTitle, clearSelectedItems: stackItems } = await usePageListS
 
 <template>
   <main>
-    <AppHero :title="page?.title.rendered"/>
+    <AppHero :title="page?.title"/>
     <AppAbout 
       :title="page?.acf?.title"
       :description="page?.acf?.description"

@@ -18,7 +18,7 @@ const posts = await usePostByCategory(config.public.API_URL);
 
 <template>
   <main>
-    <AppHero :title="page?.title.rendered"/>
+    <AppHero :title="page?.title"/>
     <BlogGrid :posts="posts"/>
   </main>
 </template>
