@@ -1,10 +1,18 @@
 <script lang="ts" setup>
 
+const route = useRouter().currentRoute;
+
 const isMenuOpen = ref(false);
 
 const handleOpenMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
-}
+};
+
+console.log(route);
+
+watch(route, () => {
+  isMenuOpen.value = false;
+});
 
 </script>
 
