@@ -14,7 +14,9 @@ watch(route, () => {
   isMenuOpen.value = false;
 });
 
-</script>
+</script> 
+
+
 
 <template>
   <nav class="site-nav">
