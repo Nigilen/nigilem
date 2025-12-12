@@ -14,6 +14,7 @@ const props = defineProps<{
         <PortfolioItem 
           :title="post.title"
           :slug="post.slug"
+          :image="post.featuredImageUrl || ''"
           :excerpt="post.excerpt"
         />
       </li>

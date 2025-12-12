@@ -23,6 +23,7 @@
   justify-content: space-between;
   padding-block: 28px;
   background-color: #fff;
+  z-index: 1;
 
   &__logo {
     inline-size: 100px;

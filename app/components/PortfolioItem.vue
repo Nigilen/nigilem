@@ -4,6 +4,7 @@ const props = defineProps<{
   slug: string;
   title: string;
   excerpt?: string;
+  image: string;
 }>();
 
 </script>
@@ -14,7 +15,7 @@ const props = defineProps<{
       :img-attrs="{
         class: 'portfolio-item__img',
       }"
-      src="/images/rectangle.png" 
+      :src="props.image" 
       :alt="props.title" 
       width="294" 
       height="294"
