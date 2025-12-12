@@ -12,7 +12,7 @@ useSeoMeta({
   ogDescription: page?.value?.acf?.seo_description || '',
 });
 
-const posts = await usePostByCategory(config.public.API_URL);
+const posts = await usePostByCategory(config.public.API_URL, 1);
 
 </script>
 
