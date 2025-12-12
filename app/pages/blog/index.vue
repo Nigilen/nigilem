@@ -14,6 +14,7 @@ useSeoMeta({
 
 const posts = await usePostByCategory(config.public.API_URL, 1);
 
+
 </script>
 
 <template>
