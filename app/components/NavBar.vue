@@ -22,19 +22,19 @@ watch(route, () => {
   <nav class="site-nav">
     <ul class="site-nav__list nav-list" :class="{ ['nav-list--open']:isMenuOpen }">
       <li>
-        <NuxtLink class="nav-list__link" href="/resume">Резюме</NuxtLink>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/resume">Резюме</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="nav-list__link" href="/portfolio">Портфолио</NuxtLink>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/portfolio">Портфолио</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="nav-list__link" href="/blog">Блог</NuxtLink>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/blog">Блог</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="nav-list__link" href="/contacts">Контакты</NuxtLink>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/contacts">Контакты</NuxtLink>
       </li>
       <li>
-        <NuxtLink class="nav-list__link" href="/services">Услуги</NuxtLink>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/services">Услуги</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -64,7 +64,19 @@ watch(route, () => {
     &:hover {
       color: #E17346;
     }
+    
+    &--active {
+      color: #E17346;
+    }
+    
   }
+}
+.my-active {
+  color: #E17346;
+}
+.my-exact-active {
+  color: #E17346;
+
 }
 
 .button--nav {

@@ -83,9 +83,6 @@ const props = defineProps<{
       font-size: 3.5rem;
     }
 
-    &__subtitle {
-      align-self: end;
-    }
   }
 }
 
