@@ -1,0 +1,60 @@
+<script lang="ts" setup>
+
+const dot = ref();
+const circle = ref();
+const degress = ref(0);
+const delta = ref(1);
+
+const animate = () => {
+  if (degress.value < 360) {
+    degress.value += 1 * delta.value;
+  } 
+  if (degress.value === 360) {
+    degress.value = 0;
+  }
+  const radians = degress.value * (Math.PI / 180);
+  
+  const positionX = Math.cos(radians) * circle.value.offsetWidth / 2;
+  const positionY = Math.sin(radians) * circle.value.offsetHeight / 2;
+
+  dot.value.style.transform = `translate(${positionX}px, ${positionY}px)`;
+  
+  requestAnimationFrame(animate);
+};
+
+onMounted(() => {
+  requestAnimationFrame(animate);
+});
+
+</script>
+
+<template>
+  <div ref="circle" class="circle">
+    <div ref="dot" class="dot"></div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+
+  .circle {
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  .dot {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    margin: auto;
+    display: block;
+    inline-size: 10px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: tomato;
+  }
+
+</style>

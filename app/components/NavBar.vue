@@ -31,6 +31,9 @@ watch(route, () => {
         <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/blog">Блог</NuxtLink>
       </li>
       <li>
+        <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/notes">Заметки</NuxtLink>
+      </li>
+      <li>
         <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/contacts">Контакты</NuxtLink>
       </li>
       <li>

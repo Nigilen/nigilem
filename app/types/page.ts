@@ -17,6 +17,7 @@ export interface PageAcf extends ResumeAcfFields {
   contacts__address?: string;
   form__title?: string;
   form__button?: string;
+  short_description?: string;
 };
 
 interface WPFeaturedMedia {
@@ -40,10 +41,11 @@ export interface WPPost<T = PageAcf> {
   };
 };
 
-export interface Post {
+export interface Post<T = PageAcf> {
   id: number;
   dateOnly?: string;
   slug: string;
+  acf?: T | null;
   title: string;
   content: string;
   excerpt: string;

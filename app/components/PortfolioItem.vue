@@ -41,10 +41,14 @@ const props = defineProps<{
   &__title {
     text-transform: uppercase;
     font-size: 0.875rem;
+    max-inline-size: 90%;
+    margin-inline: auto;
   }
   &__description {
     text-transform: uppercase;
     font-size: 0.75rem;
+    max-inline-size: 90%;
+    margin-inline: auto;
   }
 }
 </style>

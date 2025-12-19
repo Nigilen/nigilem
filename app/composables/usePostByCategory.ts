@@ -8,9 +8,11 @@ export const usePostByCategory = async (apiUrl: string, categoryId?: number): Pr
   if (categoryId) params.categories = categoryId;
 
   const posts = await $fetch<WPPost[]>(`${apiUrl}/wp-json/wp/v2/posts`, { params });
+  console.log(posts);
 
   return posts.map(post => ({
     id: post.id,
+    acf: post.acf,
     title: post.title.rendered,
     slug: post.slug,
     dateOnly: post.date,

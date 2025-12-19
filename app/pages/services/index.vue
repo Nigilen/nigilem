@@ -11,18 +11,14 @@ useSeoMeta({
   ogDescription: page?.value?.acf?.seo_description,
 });
 
-const portfolioList = await usePostByCategory(config.public.API_URL, 4);
+const servicesList = await usePostByCategory(config.public.API_URL, 4);
 
 </script>
 
 <template>
   <main>
     <AppHero :title="page?.title"/>
-
-    <ul>
-      <li v-for="item in portfolioList" :key="item.id">
-        <a :href="`/services/${item.slug}`">{{ item.title }}</a>
-      </li>
-    </ul>
+    <ServicesGrid :posts="servicesList"/>
   </main>
 </template>
+
