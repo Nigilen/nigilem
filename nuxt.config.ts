@@ -18,7 +18,19 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-      ]
+      ],
+      script: [{
+        innerHTML: `
+          (function() {
+            const saved = localStorage.getItem('color-mode');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const mode = saved || (systemDark ? 'dark' : 'light');
+            if (mode === 'dark') {
+              document.documentElement.classList.add('dark');
+            }
+          })();
+        `,
+      }],
     },
   },
 

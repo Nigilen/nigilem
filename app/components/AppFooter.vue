@@ -1,8 +1,13 @@
+<script lang="ts" setup>
+
+const { toggleTheme, colorMode } = useColorMode();
+
+</script>
+
 <template>
   <footer class="footer container">
     <p class="copyright">2025 Nigilen</p>
-    <button class="button--toggle-theme" type="button">
-      <!-- <span>Темная тема</span> -->
+    <button class="button--toggle-theme" type="button" @click="toggleTheme">
       <Icon name="my-icon:moon" />
     </button>
   </footer>
