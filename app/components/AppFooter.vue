@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-const { toggleTheme, colorMode } = useColorMode();
+const { toggleTheme } = useColorMode();
 
 </script>
 
