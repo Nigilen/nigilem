@@ -8,7 +8,7 @@ const { toggleTheme } = useColorMode();
   <footer class="footer container">
     <p class="copyright">2025 Nigilen</p>
     <button class="button--toggle-theme" type="button" @click="toggleTheme">
-      <Icon name="my-icon:moon" />
+      <Icon class="button--toggle-theme-icon" name="my-icon:moon" mode="svg" style="color: red"/>
     </button>
   </footer>
 </template>
@@ -33,6 +33,13 @@ const { toggleTheme } = useColorMode();
   cursor: pointer;
   opacity: 0.5;
   padding: 5px;
+  position: fixed;
+  inset-inline-end: 20px;
+  inset-block-end: 40px;
+  
+  &-icon :deep(g) {
+    stroke: var(--primary-color);
+  }
 
   &:hover {
     opacity: 1;
@@ -42,11 +49,6 @@ const { toggleTheme } = useColorMode();
 @media (width < 768px) {
   .footer {
     justify-content: center;
-  }
-  .button--toggle-theme {
-    position: fixed;
-    inset-inline-end: 20px;
-    inset-block-end: 40px;
   }
 }
 
