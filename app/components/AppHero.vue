@@ -35,7 +35,6 @@ const props = defineProps<{
   height: 86dvh;
 
   &__title {
-    font-size: 4.625rem;
     margin-bottom: 1rem;
     margin-top: 0;
     font-weight: 700;
@@ -45,16 +44,14 @@ const props = defineProps<{
   
   &__subtitle {
     margin: 0;
-    font-size: 0.875rem;
+
   }
 
   &__date {
-    font-size: 0.875rem;
     margin-bottom: 1rem;
-    font-size: 0.75rem;
     padding: 4px 6px;
-    border: 1px solid #E17346;
-    color: #E17346;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
   }
 }
 
@@ -65,7 +62,7 @@ const props = defineProps<{
   &__item {
     margin-right: 0.5rem;
     list-style: none;
-    font-size: 0.875rem;
+
   }
 
   &__link {
@@ -80,7 +77,6 @@ const props = defineProps<{
   .hero {
 
     &__title {
-      font-size: 3.5rem;
     }
 
   }

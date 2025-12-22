@@ -33,7 +33,7 @@ const props = defineProps<{
     column-count: auto;
     column-width: min(200px, 60vw);
     column-gap: 120px;
-    font-size: 0.875rem;
+
     padding-left: 1.1rem;
   }
 

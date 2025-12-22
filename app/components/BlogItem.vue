@@ -53,22 +53,21 @@ const props = defineProps<{
   
   &__date {
     display: block;
-    color: #E17346;
-    border: 1px solid #E17346;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
     padding: 4px 6px;
-    font-size: 0.875rem;
+
     margin: 0 auto 11px;
     inline-size: max-content;
   }
   
   &__title {
     text-transform: uppercase;
-    font-size: 0.875rem;
+
     margin-block: 0 2px;
   }
   &__description {
     text-transform: uppercase;
-    font-size: 0.75rem;
     margin-block: 0;
   }
 }

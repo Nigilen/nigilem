@@ -5,8 +5,6 @@ const props = defineProps<{
   posts: Post[]
 }>();
 
-console.log(props.posts);
-
 </script>
 
 <template>

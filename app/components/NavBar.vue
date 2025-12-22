@@ -8,8 +8,6 @@ const handleOpenMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
-console.log(route);
-
 watch(route, () => {
   isMenuOpen.value = false;
 });
@@ -36,9 +34,9 @@ watch(route, () => {
       <li>
         <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/contacts">Контакты</NuxtLink>
       </li>
-      <li>
+      <!-- <li>
         <NuxtLink class="nav-list__link" active-class="nav-list__link--active" href="/services">Услуги</NuxtLink>
-      </li>
+      </li> -->
     </ul>
   </nav>
   <button class="button--nav nav-button" type="button" @click="handleOpenMenu">
@@ -57,7 +55,7 @@ watch(route, () => {
   column-gap: 50px;
   
   &__link {
-    font-size: 0.875rem;
+
     color: #55534E; 
     cursor: pointer;
     color: inherit;
@@ -65,20 +63,20 @@ watch(route, () => {
     padding: 5px;
 
     &:hover {
-      color: #E17346;
+      color: var(--accent-color);
     }
     
     &--active {
-      color: #E17346;
+      color: var(--accent-color);
     }
     
   }
 }
 .my-active {
-  color: #E17346;
+  color: var(--accent-color);
 }
 .my-exact-active {
-  color: #E17346;
+  color: var(--accent-color);
 
 }
 
@@ -102,7 +100,7 @@ watch(route, () => {
     inset-inline-start: 0;
     inline-size: 100%;
     block-size: max-content;
-    background-color: #fff;
+    background-color: var(--secondary-color);
     padding: 40px 40px;
     gap: 30px;
     align-items: flex-end;
@@ -110,7 +108,6 @@ watch(route, () => {
     transform: translateX(-100%);
 
     &__link {
-      font-size: 1.25rem;
     }
   }
 
@@ -123,7 +120,7 @@ watch(route, () => {
   }
 
   .nav-button--open {
-    background-color: #E17346;
+    background-color: var(--accent-color);
   }
 }
 

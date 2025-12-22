@@ -32,22 +32,22 @@ useSeoMeta({
   }
 
   .article :deep(a) {
-    color: #E17346;
+    color: var(--accent-color);
     text-decoration-color: transparent;
     transition: all 0.1s ease-in-out;
     text-underline-offset: 0.4em;
   }
   .article :deep(a:hover) {
-    text-decoration-color: #E17346;
+    text-decoration-color: var(--accent-color);
     text-underline-offset: 0.3em;
   }
 
   .article :deep(h2) {
-    color: #000000;
+    color: var(--primary-color)000;
   }
 
   .article :deep(p) {
-    font-size: 0.875rem;
+
     line-height: 1.7;
     margin-block-end: 2rem;
   }
@@ -58,7 +58,7 @@ useSeoMeta({
   }
 
   .article :deep(li) {
-    font-size: 0.875rem;
+
     line-height: 1.7;
     padding-inline-start: 0.5em;
     margin-inline-start: 1em;

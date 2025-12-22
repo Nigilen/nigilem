@@ -11,7 +11,7 @@ const props = defineProps<{
 
 <template>
   <section class="contacts-info container">
-    <h2 class="section-title contacts-info__title">{{ props.title }}</h2>
+    <!-- <h2 class="section-title contacts-info__title">{{ props.title }}</h2> -->
     <dl class="contacts-info__list" role="list">
       <div class="contacts-info__item contact-info-item" role="listitem">
         <dt class="contact-info-item__term">
@@ -67,14 +67,14 @@ const props = defineProps<{
   row-gap: 32px;
 
   &__term {
-    font-size: 0.875rem;
+
     display: flex;
     align-items: center;
     column-gap: 16px;
   }
 
   &__desc {
-    font-size: 0.875rem;
+
     margin: 0;
   }
 

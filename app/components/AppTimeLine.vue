@@ -3,6 +3,8 @@
 interface ListItem {
   id: number;
   text: string;
+  title?: string;
+  caption?: string;
   date?: string;
 };
 
@@ -25,9 +27,9 @@ const props = defineProps<{
         <dt class="timeline-item__term">
           {{ item.date }}
         </dt>
-        <!-- <dd class="timeline-item__desc">
-          {{ item.title }}
-        </dd> -->
+        <dd class="timeline-item__desc">
+          {{ item.caption }}
+        </dd>
         <dd class="timeline-item__details">
           {{ item.text }}
         </dd>
@@ -52,22 +54,21 @@ const props = defineProps<{
 
   &__term {
     display: block;
-    border: 1px solid #E17346;
-    color: #E17346;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
     inline-size: max-content;
     padding: 5px 7px;
-    font-size: 0.75rem;
     margin-inline-start: 2rem;
   }
   
   &__desc {
     margin-inline-start: 2rem;
-    font-size: 0.875rem;
+
   }
   
   &__details {
     margin-inline-start: 2rem;
-    font-size: 0.875rem;
+
   }
 
   &:not(:last-child)::before {
@@ -76,14 +77,14 @@ const props = defineProps<{
     display: block;
     inline-size: 2rem;
     block-size: 100%;
-    border-left: 1px solid #E17346;
-    border-bottom: 1px solid #E17346;
+    border-left: 1px solid var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
     margin-block-start: .8rem;
   }
 
   &:first-child::before {
-    border-left: 1px solid #E17346;
-    border-top: 1px solid #E17346;
+    border-left: 1px solid var(--accent-color);
+    border-top: 1px solid var(--accent-color);
   }
 
 }

@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
   padding-block: 28px;
-  background-color: #fff;
+  background-color: var(--secondary-color);
   z-index: 1;
 
   &__logo {

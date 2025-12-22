@@ -12,7 +12,7 @@
 
 <style lang="scss" scoped>
 .blockquote {
-  border-left: 2px solid #E17346;
+  border-left: 2px solid var(--accent-color);
   padding-left: 20px;
   font-style: italic;
   margin-left: 0;

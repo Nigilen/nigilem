@@ -8,7 +8,7 @@
 <style lang="scss" scoped>
 
 .some-title {
-  color: #000000;
+  color: var(--primary-color)000;
 }
 
 </style>

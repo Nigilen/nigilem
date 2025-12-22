@@ -19,7 +19,6 @@
 }
 
 .copyright {
-  font-size: 0.875rem;
   color: #aaa;
 }
 

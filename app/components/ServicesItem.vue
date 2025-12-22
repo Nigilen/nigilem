@@ -59,12 +59,10 @@ const props = defineProps<{
 
   &__title {
     text-transform: uppercase;
-    font-size: 2.875rem;
     margin: 0;
   }
   &__description {
     text-transform: uppercase;
-    font-size: 1.75rem;
     margin: 0;
   }
 

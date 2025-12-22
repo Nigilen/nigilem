@@ -8,7 +8,6 @@ const props = defineProps<{
 }>();
 
 
-
 </script>
 
 <template>
@@ -29,39 +28,7 @@ const props = defineProps<{
       <p class="about__text">
         {{ props.description }}
       </p>
-      <!-- <dl class="about__list">
-        <div class="about__item about-item">
-          <dt class="about-item__term">Возраст:</dt>
-          <dd class="about-item__desc">36 лет</dd>
-        </div>
-        <div class="about__item about-item">
-          <dt class="about-item__term">Гражданство:</dt>
-          <dd class="about-item__desc">Россия</dd>
-        </div>
-        <div class="about__item about-item">
-          <dt class="about-item__term">Фриланс:</dt>
-          <dd class="about-item__desc">возможен</dd>
-        </div>
-        <div class="about__item about-item">
-          <dt class="about-item__term">Адресс:</dt>
-          <dd class="about-item__desc">
-            <address class="about-item__value">Россия, Москва</address>
-          </dd>
-        </div>
-        <div class="about__item about-item">
-          <dt class="about-item__term">Телефон:</dt>
-          <dd class="about-item__desc">
-            <a class="about-item__value" href="tel:+79521179309">+7(952)117-93-09</a>
-          </dd>
-        </div>
-        <div class="about__item about-item">
-          <dt class="about-item__term">Email:</dt>
-          <dd class="about-item__desc">
-            <a class="about-item__value" href="mailto:info@nigilen.ru">info@nigilen.ru</a>
-          </dd>
-        </div>
-      </dl> -->
-      <a class="button about__link" href="#">{{ props.btnText }}</a>
+      <!-- <a class="button about__link" href="#">{{ props.btnText }}</a> -->
     </div>
   </section>
 </template>
@@ -91,9 +58,9 @@ const props = defineProps<{
   }
 
   &__text {
-    font-size: 0.875rem;
     grid-column: 2 / -1;
     grid-row: 1 / 2;
+    line-height: 1.5;
   }
 
   &__list {
@@ -149,12 +116,12 @@ const props = defineProps<{
   column-gap: 8px;
 
   &__term {
-    font-size: 0.875rem;
+
     color: #E17447;
   }
 
   &__desc {
-    font-size: 0.875rem;
+
     margin: 0;
   }
 

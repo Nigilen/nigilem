@@ -1,11 +1,33 @@
 :root {
-  --primary-color: #000000;
+  --primary-color: #000;
   --secondary-color: #ffffff;
   --accent-color: #E17346;
 
   --main-font: 'JetBrains Mono', monospace;
 
-  --h1-font-size: 74px;
-  --text-font-size: 16px;
-  --text-font-size__small: 14px;
+  font-size: clamp(16px, 4vw, 18px);
 }
+
+
+h1 {
+  font-size: clamp(1.75rem, 8vw, 3rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
+  font-weight: 500;
+}
+
+
+@media (width < 768px) {
+  :root {
+
+  }
+}
+

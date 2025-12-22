@@ -83,7 +83,7 @@ const handleSubmit = () => {
     border: none;
     border-bottom: 1px solid #ddd;
     font: inherit;
-    font-size: 0.875rem;
+
     line-height: 24px;
     padding: 23px 0;
 
@@ -105,7 +105,7 @@ const handleSubmit = () => {
 
   &__error {
     display: none;
-    font-size: 0.875rem;
+
     color: #E17447;
   }
 

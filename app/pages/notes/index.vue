@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  
+
 
 </script>
 
@@ -29,6 +31,7 @@
         </li>
       </ul>
     </div>
+
   </main>
 </template>
 
@@ -49,5 +52,6 @@
   gap: 10px;
   justify-content: space-between;
 }
+
 
 </style>

@@ -23,9 +23,9 @@ useSeoMeta({
       :email="page?.acf?.contacts__email"
       :address="page?.acf?.contacts__address"
     />
-    <AppContactsForm 
+    <!-- <AppContactsForm 
       :title="page?.acf?.form__title"
       :button="page?.acf?.form__button"
-    />
+    /> -->
   </main>
 </template>
