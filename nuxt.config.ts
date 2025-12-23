@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/scss/_variables.scss', '~/assets/scss/main.scss'],
+  css: ['~/assets/scss/_fonts.scss', '~/assets/scss/_variables.scss', '~/assets/scss/main.scss'],
   compatibilityDate: '2025-07-15',
   ssr: true,
 
@@ -50,17 +50,17 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
 
-  fonts: {
-    families: [
-      {
-        name: 'JetBrainsMono',
-        provider: 'local',
-        styles: ['normal', 'italic'],
-        weights: [400, 500, 600, 700],
-        subsets: ['latin', 'cyrillic']
-      }
-    ]
-  },
+  // fonts: {
+  //   families: [
+  //     {
+  //       name: 'JetBrainsMono',
+  //       provider: 'local',
+  //       styles: ['normal', 'italic'],
+  //       weights: [400, 500, 600, 700],
+  //       subsets: ['latin', 'cyrillic']
+  //     }
+  //   ]
+  // },
 
   icon: {
     customCollections: [
