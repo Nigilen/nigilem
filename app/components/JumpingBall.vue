@@ -14,29 +14,59 @@ const box = ref();
 const ball = ref();
 const y = ref(0);
 const x = ref(0);
-const v = ref(0);
-const g = ref(9.8);
-const delta = ref(0.1);
+const speedX = ref(100);
+const speedY = ref(0);
+const gravity = ref(500);
+let lastTime = 0;
+// const delta = ref(0.1);
 
-
-const anima = () => {
-  const boxHeight = box.value.offsetHeight;
-  const ballSize = ball.value.offsetWidth;
-
-  if (y.value < (boxHeight - (ballSize * 2))) {
-    v.value += g.value * delta.value;
-  } 
-  if (y.value >= (boxHeight - (ballSize * 2))) {
-    v.value = -v.value;
+const anima = (timestamp: number) => {
+  const delta = lastTime ? (timestamp - lastTime) / 1000 : 0;
+  lastTime = timestamp;
+  
+  if (delta === 0) {
+    requestAnimationFrame(anima);
+    return;
   }
 
-  y.value += v.value;
+  const boxHeight = box.value.offsetHeight;
+  const boxWidth = box.value.offsetWidth;
+  const ballSize = ball.value.offsetWidth;
+  const ground = boxHeight - ballSize;
+
+  if (y.value < ground) {
+    speedY.value += gravity.value * delta;
+  } 
+  y.value += speedY.value * delta;
+
+
+  if (x.value < boxWidth) {
+    x.value += speedX.value * delta;
+  }
+
+  if (x.value < 0) {
+    speedX.value = -speedX.value;
+  }
+  
+  if (x.value >= boxWidth - ballSize) {
+    speedX.value = -speedX.value * 0.4;
+  }
+  
+  if (y.value >= ground) {
+    y.value = ground;
+    speedY.value = -speedY.value * 0.7;
+  }
+  if (y.value < 0) {
+    y.value = 0;
+  }
+
   ball.value.style.transform = `translate(${x.value}px, ${y.value}px)`;
   requestAnimationFrame(anima);
 };
 
 onMounted(() => {
-  anima();
+  lastTime = 0;
+  requestAnimationFrame(anima);
 });
 
 </script>

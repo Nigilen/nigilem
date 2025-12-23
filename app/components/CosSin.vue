@@ -12,16 +12,22 @@ const handleCloseModal = () => {
 const dot = ref();
 const circle = ref();
 const degress = ref(0);
-const delta = ref(1);
+let lastT = 0;
 
-const animate = () => {
+const animate = (curT: number) => {
+  const delta = (curT - lastT) / 1000;
+  lastT = curT;
+
   if (degress.value < 360) {
-    degress.value += 1 * delta.value;
-  } 
-  if (degress.value === 360) {
+    degress.value += 360 * delta;
+  };
+
+  if (degress.value >= 360) {
     degress.value = 0;
-  }
+  };
+
   const radians = degress.value * (Math.PI / 180);
+
   
   const positionX = Math.cos(radians) * circle.value.offsetWidth / 2;
   const positionY = Math.sin(radians) * circle.value.offsetHeight / 2;
@@ -32,7 +38,7 @@ const animate = () => {
 };
 
 onMounted(() => {
-  animate();
+  requestAnimationFrame(animate);
 });
 
 </script>
