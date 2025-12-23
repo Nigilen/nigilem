@@ -85,6 +85,7 @@ const anima = () => {
 
 <style lang="scss" scoped>
 
+
 .box {
   display: block;
   margin: auto;
@@ -99,7 +100,6 @@ const anima = () => {
   height: 10px;
   background-color: tomato;
   border-radius: 50%;
-  // transform-origin: bottom;
 }
 
 .description {
